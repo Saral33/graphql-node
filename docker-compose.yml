@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  # client:
+  # build:
+  #   context: ./client
+  #   dockerfile: dockerfile
+  # ports:
+  #   - '5173:5173'
+  # volumes:
+  #   - ./client:/react-app
+  server:
+    build: .
+    networks:
+      - dbNetwork
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  mongodb_container:
+    image: mongo:latest
+    env_file:
+      - .env
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+    networks:
+      - dbNetwork
+
+volumes:
+  mongodb_data_container:
+
+networks:
+  dbNetwork:
