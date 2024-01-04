@@ -1,13 +1,13 @@
 version: '3.7'
 services:
-  # client:
-  # build:
-  #   context: ./client
-  #   dockerfile: dockerfile
-  # ports:
-  #   - '5173:5173'
-  # volumes:
-  #   - ./client:/react-app
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./client:/react-app
   server:
     build: .
     networks:
